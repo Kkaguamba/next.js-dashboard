@@ -13,4 +13,10 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
  	return data;
 }
 
-
+export async function GET() {
+  try {
+   	return Response.json(await listInvoices());
+   } catch (error) {
+   	return Response.json({ error }, { status: 500 });
+  }
+}
